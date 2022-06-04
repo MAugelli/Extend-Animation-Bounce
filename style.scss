@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+}
+
+$colore: red;
+$raggio: 50px;
+
+
+
+@function random-hex() {
+    $rgb: "";
+    $i: 6;
+
+    @while $i >0 {
+        $hex-unit: random(16) - 1;
+        $letters: A,B,C,D,E,F;
+
+        @if $hex-unit >9 {
+            $hex-unit: nth($letters, ($hex-unit - 9));
+        }
+
+        ;
+        $rgb: str-insert($rgb, ("" + $hex-unit), 0);
+        $i: $i - 1;
+    }
+
+    @return unquote("#" +"#{$rgb}");
+
+}
+
+@mixin bounce ($punto-iniziale, $distanza){
+    animation: bounce 2s ease infinite;
+
+    @keyframes bounce {
+
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+            transform: translateY($punto-iniziale);
+        }
+
+        40% {
+            transform: translateY($distanza);
+        }
+
+        60% {
+            transform: translateY(calc($distanza/2));
+        }
+    }
+
+}
+
+
+
+h1 {
+    text-align: center;
+    margin: 2rem auto 4rem;
+}
+
+.palla {
+    margin: 10rem auto;
+    width: $raggio;
+    height: $raggio;
+    border-radius: 50%;
+    @include bounce (0, -30px);
+    background-color: random-hex();
+}
