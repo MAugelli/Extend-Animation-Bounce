@@ -35,7 +35,7 @@ $raggio: 50px;
 }
 
 @mixin bounce ($punto-iniziale, $distanza){
-    animation: bounce 2s ease infinite;
+    animation: bounce 1s ease infinite;
 
     @keyframes bounce {
 
@@ -71,5 +71,8 @@ h1 {
     height: $raggio;
     border-radius: 50%;
     @include bounce (0, -30px);
+}
+
+.bg-random{
     background-color: random-hex();
 }
